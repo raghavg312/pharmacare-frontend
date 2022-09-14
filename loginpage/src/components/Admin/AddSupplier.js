@@ -23,6 +23,7 @@ function AddSupplier(){
       (error) => {
         console.log(error);
         console.log("error");
+        alert("Supplier Not added. Check inputs");
       }
     );
   };

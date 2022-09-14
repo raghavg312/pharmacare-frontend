@@ -22,12 +22,12 @@ function ViewSupplier() {
     };
 
     useEffect(() => {
-        document.title = "Supplier";
+        document.title = "PharmaCare";
         getSupplierFromApi();
     }, []);
 
     const updateSupplierView = (id) => {
-        setSupplier(supplier.filter((s) => s.supplierId !== id));
+        setSupplier(supplier.filter((s) => s.SupplierId !== id));
     };
 
     return (
@@ -44,19 +44,16 @@ function ViewSupplier() {
                             <th>S.N.</th>
                             <th>Supplier Id</th>
                             <th>Supplier Name</th>
-                            <th>Expiry Date</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th> </th>
-                            <th> </th>
+                            <th>Supplier Email</th>
+                            <th>Contact</th>
                         </tr>
                     </thead>
                     <tbody>
                         {supplier.map((s) => {
                             return (
                                 <Supplier
-                                    key={s.supplierId}
-                                    Supplier={s}
+                                    key={s.SupplierId}
+                                    supplier={s}
                                     deletionView={updateSupplierView}
                                     index={++index}
                                 />

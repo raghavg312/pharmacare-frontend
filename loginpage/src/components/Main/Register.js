@@ -17,8 +17,29 @@ const Register = () => {
   const [Users, setUsers] = useState({});
 
   const handleForm = (e) => {
-    console.log(Users);
-    AddUser(Users);
+
+    if (Users.userName === undefined) {
+      alert("User Name cannot be null");
+    } else if (Users.userEmail === undefined) {
+      alert("User Email cannot be null");
+    } else if (Users.userPassword === undefined) {
+      alert("User Password cannot be null");
+    } else if (Users.userContact === undefined) {
+      alert("User Contact cannot be null");
+    } else {
+      axios
+        .get(baseUrl + "/user/email/" + Users.userEmail, Users.userEmail)
+        .then(
+          (response) => {
+            alert(
+              "This Email id has already been Registered. Try with another Email Id."
+            );
+          },
+          (error) => {
+            AddUser(Users);
+          }
+        );
+    }
     e.preventDefault();
   };
 
@@ -26,11 +47,9 @@ const Register = () => {
     axios.post(`${baseUrl}/createUser`, data).then(
       (response) => {
         alert("You are Registered. An mail has been send to your mail");
-        console.log("response");
       },
       (error) => {
-        console.log(error);
-        console.log("error");
+        alert("Not Registered. Check Inputs");
       }
     );
   };
@@ -38,8 +57,8 @@ const Register = () => {
   return (
     <div className="register my-2">
       <Row>
-        <Col md={4}></Col>
-        <Col md={4}>
+        <Col md={3}></Col>
+        <Col md={6}>
           <Container>
             <Card className="p-4" color="secondary">
               <Form onSubmit={handleForm}>
@@ -100,14 +119,14 @@ const Register = () => {
                       setUsers({ ...Users, userRole: e.target.value });
                     }}
                   >
-                    <option value="DOCTOR">Doctor</option>
-                    <option value="ADMIN">Admin</option>
+                    <option value="ROLE_DOCTOR">Doctor</option>
+                    <option value="ROLE_ADMIN">Admin</option>
                   </Input>
 
                   <Button color="dark" type="submit">
                     Register
                   </Button>
-                  <Link to="/">
+                  <Link to="/login">
                     <Button color="dark">Login</Button>
                   </Link>
                 </FormGroup>
@@ -115,7 +134,7 @@ const Register = () => {
             </Card>
           </Container>
         </Col>
-        <Col md={4}></Col>
+        <Col md={3}></Col>
       </Row>
     </div>
   );

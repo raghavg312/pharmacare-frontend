@@ -15,7 +15,6 @@ import baseUrl from "../api's/base_url";
 
 function OrderAdmin({ order, updateViewOrder }) {
     let index = 0;
-    // Accordian state toggle
     const [open, setOpen] = useState();
     const toggle = (id) => {
         if (open === id) {

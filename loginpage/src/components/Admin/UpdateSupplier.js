@@ -26,15 +26,16 @@ const UpdateSupplier = (props) => {
     };
 
     useEffect(() => {
-        document.title = "Update-Supplier";
+        document.title = "PharmaCare";
         getSupplierByIdFromApi();
     }, []);
 
     const updateSupplieOnApi = () => {
         axios.put(baseUrl + "/supplier/" + id, Supplier).then(
             (response) => {
-                console.log(response.data);
+                alert("Supplier updated successfully.");
                 setSupplier(response.data);
+                
             },
             (error) => {
                 console.log("error in supplier by id");

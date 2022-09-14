@@ -22,7 +22,7 @@ function ViewDrugsAdmin() {
     };
 
     useEffect(() => {
-        document.title = "Drugs";
+        document.title = "PharmaCare";
         getDrugsFromApi();
     }, []);
 

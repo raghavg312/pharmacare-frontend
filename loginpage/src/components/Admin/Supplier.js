@@ -7,6 +7,7 @@ import {
 import baseUrl from "../api's/base_url";
 
 const Supplier=({ supplier, flag, deletionView,index })=>{
+    console.log(supplier);
 
   const deleteSupplierHandler = () => {
     axios.delete(baseUrl + "/supplier/" + supplier.supplierId).then(
@@ -21,21 +22,17 @@ const Supplier=({ supplier, flag, deletionView,index })=>{
     );
 };
 
-
-
   return (
        <tr>
-
         <th scope="row">{index}</th> 
-             <td>{Supplier.supplierId}</td>
-            <td>{Supplier.supplierName}</td>
-            <td>{Supplier.supplierEmail}</td>
-            <td> {Supplier.supplierContact}</td>
-             <td>{console.log(Supplier.supplier)}</td> 
+             <td>{supplier.supplierId}</td>
+            <td>{supplier.supplierName}</td>
+            <td>{supplier.supplierEmail}</td>
+            <td> {supplier.supplierContact}</td>
             {!flag ? (
                 <>
                     <td>
-                        <Link to={"/admin/update-supplier/" + Supplier.supplierId}>
+                        <Link to={"/admin/update-supplier/" + supplier.supplierId}>
                             <Button color="primary" className="mx-1">
                                 update
                             </Button>

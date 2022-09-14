@@ -28,13 +28,14 @@ const Sales = () => {
             },
             (error) => {
                 console.log("error");
+                alert("No Doctor found with this Id");
             }
 
         );
     };
 
     useEffect(() => {
-        document.title = "Sale";
+        document.title = "PharmaCare";
         TotalSale();
     }, []);
 

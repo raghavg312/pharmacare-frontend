@@ -25,7 +25,7 @@ function ViewOrdersAdmin({ flag }) {
     };
 
     useEffect(() => {
-        document.title = "Orders";
+        document.title = "PharmaCare";
         getOrdersFromApi();
     }, []);
 

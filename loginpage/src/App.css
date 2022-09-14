@@ -1,7 +1,10 @@
 .App {
   text-align: center;
-  background-color: #233142;
+  background-color:#e3e3e3;
   height: auto;
   padding-bottom: 40px;
 }
 
+.bar{
+  margin-bottom: 5px;
+}

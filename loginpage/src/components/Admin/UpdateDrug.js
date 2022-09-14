@@ -26,16 +26,16 @@ const UpdateDrug = () => {
     };
 
     useEffect(() => {
-        document.title = "Update-Drug";
+        document.title = "PharmaCare";
         getDrugByIdFromApi();
     }, []);
 
     const updateDrugOnApi = () => {
         axios.put(baseUrl + "/drug/" + id, Drug).then(
             (response) => {
-                console.log(response.data);
+                alert("Drug updated Successfully.");
                 setDrug(response.data);
-                alert("Drug updated Successfully.")
+               
             },
             (error) => {
                 console.log("error in drug by id");

@@ -1,4 +1,6 @@
 import "./App.css";
+import React, { useState } from "react";
+
 import Navb from "./components/Navb";
 import Login from "./components/Main/Login";
 import Register from "./components/Main/Register";
@@ -17,79 +19,139 @@ import AddSupplier from "./components/Admin/AddSupplier";
 import UpdateSupplier from "./components/Admin/UpdateSupplier";
 
 import ViewOrders from "./components/Admin/ViewOrder";
-import ViewAllOrder from "./components/Admin/ViewAllOrder";
 import Sales from "./components/Admin/Sales";
+import DoctorMenu from "./components/Doctor/DoctorMenu";
+import ViewDoctorDrugs from "./components/Doctor/ViewDoctorDrugs";
+import Cart from "./components/Doctor/Cart";
 
 function App() {
+  const [isLogin, setIsLogin] = useState();
+  const setLogin = (flag) => {
+      setIsLogin(flag);
+  };
+
+  const [user, setUser] = useState();
+  const setUserDetails = (data) => {
+      setUser(data);
+  };
+
   return (
-    <div className="App">
-      <Router>
-        <Navb />
-        <br />
-        <div className="Form">
-          <Routes>
-            <Route path="/createUser" element={<Register />} exact></Route>
-            <Route path="/" element={<Login />} exact></Route>
-          </Routes>
-        </div>
-        <br />
-        <Row>
-          <Col md={3}>
-            <Routes>
-              <Route path="/admin/*" exact element={<AdminMenu />} />
-            </Routes>
-          </Col>
-          <Col md={9}>
-            <Routes>
-              <Route path="/admin/view-drugs" element={<ViewDrugs />} exact />
-              <Route path="/admin/add-drugs" element={<AddDrugs />} exact />
-              <Route
-                path="/admin/update-drug/:id"
-                element={<UpdateDrugs />}
-                exact
-              />
+      <div className="App">
+          <Router>
+              <Navb isLogin={isLogin} setData={setLogin} />
+              <Row>
+                  <Routes>
+                     
+                  </Routes>
+                  <Routes>
+                      <Route
+                          path="/login"
+                          exact
+                          element={
+                              <Login
+                                  setData={setLogin}
+                                  setUserDetails={setUserDetails}
+                              />
+                          }
+                      />
+                  </Routes>
+                  <Routes>
+                      <Route path="/register" exact element={<Register />} />
+                  </Routes>
+                  <Col md={1}></Col>
 
-              <Route
-                path="/admin/view-supplier"
-                element={<ViewSupplier />}
-                exact
-              />
-              <Route
-                path="/admin/add-supplier"
-                element={<AddSupplier />}
-                exact
-              />
-              <Route
-                path="/admin/update-supplier/:id"
-                element={<UpdateSupplier />}
-                exact
-              />
+                  <Col md={2}>
+                      <Routes>
+                          <Route
+                              path="/doctor/*"
+                              exact
+                              element={<DoctorMenu />}
+                          />
+                          <Route
+                              path="/admin/*"
+                              exact
+                              element={<AdminMenu />}
+                          />
+                      </Routes>
+                  </Col>
+                  <Col md={9}>
+                      <Routes>
+                          <Route
+                              path="/doctor/view-drugs"
+                              exact
+                              element={<ViewDoctorDrugs />}
+                          />
+                          <Route
+                              path="/doctor/cart"
+                              exact
+                              element={<Cart user={user} />}
+                          />
+                      </Routes>
 
-              <Route path="/admin/view-orders" element={<ViewOrders />} exact />
-            
-              <Route
-                path="/admin/view-orders-new"
-                exact
-                element={<ViewOrders flag={"new"} />}
-              />
+                      <Routes>
+                          <Route
+                              path="/admin/view-drugs"
+                              exact
+                              element={<ViewDrugs />}
+                          />
+                          <Route
+                              path="/admin/add-drugs"
+                              exact
+                              element={<AddDrugs />}
+                          />
 
-              <Route
-                path="/admin/view-orders-verified"
-                exact
-                element={<ViewOrders flag={"verified"} />}
-              />
+                          <Route
+                              path="/admin/update-drug/:id"
+                              exact
+                              element={<UpdateDrugs />}
+                          />
+                          <Route
+                              path="/admin/view-orders"
+                              exact
+                              element={<ViewOrders />}
+                          />
 
-              <Route
-                path="/admin/view-orders-pickedup"
-                exact
-                element={<ViewOrders flag={"pickedup"} />}
-              />
-              <Route path="/admin/Sales" element={<Sales />} exact />
-            </Routes>
-          </Col>
-        </Row>
-      </Router>
-    </div>
+                          <Route
+                              path="/admin/view-orders-new"
+                              exact
+                              element={<ViewOrders flag={"new"} />}
+                          />
+
+                          <Route
+                              path="/admin/view-orders-verified"
+                              exact
+                              element={<ViewOrders flag={"verified"} />}
+                          />
+
+                          <Route
+                              path="/admin/view-orders-pickedup"
+                              exact
+                              element={<ViewOrders flag={"pickedup"} />}
+                          />
+                          <Route
+                              path="/admin/view-supplier"
+                              exact
+                              element={<ViewSupplier />}
+                          />
+
+                          <Route
+                              path="/admin/add-supplier"
+                              exact
+                              element={<AddSupplier />}
+                          />
+                          <Route
+                              path="/admin/update-supplier/:id"
+                              exact
+                              element={<UpdateSupplier />}
+                          />
+                          <Route path="/admin/Sales" 
+                          exact 
+                          element={<Sales/>}></Route>
+                      </Routes>
+                  </Col>
+              </Row>
+          </Router>
+      </div>
   );
 }
 
